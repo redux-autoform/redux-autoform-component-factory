@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'underscore';
 import { Field } from 'redux-form';
 
 // component definitions
@@ -96,7 +95,7 @@ export default class ComponentFactory {
         if(this.defaultFieldComponents[type])
             return this.getFieldComponent(this.defaultFieldComponents[type]);
         const componentsForType = this.getFieldComponents(type);
-        const component = _.first(componentsForType);
+        const component = (componentsForType && componentsForType.length) ? componentsForType[0] : undefined;
         if(!component)
             throw new Error(`Couldn't find any component for the given type. Type: ${type}. Make sure the proper component was registered in the ComponentFactory.`);
         return component;
